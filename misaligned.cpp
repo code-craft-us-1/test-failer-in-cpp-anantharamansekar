@@ -1,13 +1,28 @@
 #include <assert.h>
 #include <iostream>
+#include <string>
+
+using namespace std;
+
+const char* majorColor[] = { "White", "Red", "Black", "Yellow", "Violet" };
+const char* minorColor[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
+
+string GetMajorColor(int n)
+{
+    return majorColor[n];
+}
+
+string GetMinorColor(int n)
+{
+    return minorColor[n];
+}
 
 int printColorMap() {
-    const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
-    const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
+
     int i = 0, j = 0;
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 5; j++) {
-            std::cout << i * 5 + j << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
+            std::cout << i * 5 + j << " | " << GetMajorColor(i) << " | " << GetMinorColor(j) << "\n";
         }
     }
     return i * j;
@@ -16,6 +31,10 @@ int printColorMap() {
 int main() {
     int result = printColorMap();
     assert(result == 25);
+    assert(GetMajorColor(2) == "Black");
+
+    assert(GetMinorColor(3) == "Brown");
+
     std::cout << "All is well (maybe!)\n";
     return 0;
 }
