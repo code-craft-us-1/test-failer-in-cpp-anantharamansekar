@@ -2,17 +2,17 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+//using namespace std;
 
 const char* majorColor[] = { "White", "Red", "Black", "Yellow", "Violet" };
 const char* minorColor[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
 
-string GetMajorColor(int n)
+std::string GetMajorColor(int n)
 {
     return majorColor[n];
 }
 
-string GetMinorColor(int n)
+std::string GetMinorColor(int n)
 {
     return minorColor[n];
 }
