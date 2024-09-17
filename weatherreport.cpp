@@ -2,7 +2,9 @@
 #include <string>
 #include <iostream>
 
-using std::cout, std::endl, std::string;
+using std::cout;
+using std::endl;
+using std::string;
 
 namespace WeatherSpace {
 class IWeatherSensor {
@@ -25,6 +27,24 @@ class SensorStub : public IWeatherSensor {
 
     int Precipitation() const override {
         return 70;
+    }
+
+    double TemperatureInC() const override {
+        return 26;
+    }
+
+    int WindSpeedKMPH() const override {
+        return 52;
+    }
+};
+
+class SensorStub2 : public IWeatherSensor {
+    int Humidity() const override {
+        return 72;
+    }
+
+    int Precipitation() const override {
+        return 18;
     }
 
     double TemperatureInC() const override {
@@ -74,11 +94,24 @@ void TestHighPrecipitationAndLowWindspeed() {
     string report = Report(sensor);
     assert(report.length() > 0);
 }
+
+void TestSunny() {
+    // This instance of stub needs to be different-
+    // to give high precipitation (>60) and low wind-speed (<50)
+    SensorStub2 sensor;
+
+    // strengthen the assert to expose the bug
+    // (function returns Sunny day, it should predict rain)
+    string report = Report(sensor);
+    assert(report.find("Sunny day") != string::npos);
+}
+
 }  // namespace WeatherSpace
 
 int main() {
     WeatherSpace::TestRainy();
     WeatherSpace::TestHighPrecipitationAndLowWindspeed();
+    WeatherSpace::TestSunny();
     cout << "All is well (maybe)\n";
     return 0;
 }
