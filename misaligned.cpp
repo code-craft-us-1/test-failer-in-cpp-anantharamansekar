@@ -5,11 +5,11 @@
 const char* majorColor[] = { "White", "Red", "Black", "Yellow", "Violet" };
 const char* minorColor[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
 
-std::string GetMajorColor(int n){
+std::string GetMajorColor(int n) {
     return majorColor[n];
 }
 
-std::string GetMinorColor(int n){
+std::string GetMinorColor(int n) {
     return minorColor[n];
 }
 
