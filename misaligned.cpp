@@ -2,8 +2,6 @@
 #include <iostream>
 #include <string>
 
-//using namespace std;
-
 const char* majorColor[] = { "White", "Red", "Black", "Yellow", "Violet" };
 const char* minorColor[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
 
@@ -21,8 +19,11 @@ int printColorMap() {
 
     int i = 0, j = 0;
     for (i = 0; i < 5; i++) {
+        std::string majorColor = GetMajorColor(i);
         for (j = 0; j < 5; j++) {
-            std::cout << i * 5 + j << " | " << GetMajorColor(i) << " | " << GetMinorColor(j) << "\n";
+            std::string minorColor = GetMinorColor(j);
+            int colorId = i * 5 + j;
+            std::cout << colorId << " | " << majorColor << " | " << minorColor << "\n";
         }
     }
     return i * j;
