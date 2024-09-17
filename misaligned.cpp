@@ -31,7 +31,7 @@ int main() {
     assert(result == 25);
     assert(GetMajorColor(2) == "Black");
 
-    assert(GetMinorColor(3) == "Brown");
+    assert(GetMinorColor(0) == "White");
 
     std::cout << "All is well (maybe!)\n";
     return 0;
