@@ -8,6 +8,7 @@ using std::endl;
 using std::string;
 
 int main() {
+    assert(false);
     cout << "All is well (maybe)\n";
     return 0;
 }
