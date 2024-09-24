@@ -8,76 +8,55 @@ using namespace WeatherSpace;
     /// test the other parts of this application in isolation
     /// without needing the actual Sensor during development
 
-class SensorStub : public IWeatherSensor {
+class SensorStub : public IWeatherSensor{
+
+    int m_humidity;
+    int m_precipitation;
+    int m_temp;
+    int m_windspd;
+
+public:
+    SensorStub(int humidity, int precipitation, int temp, int windspd)
+    {
+        m_humidity = humidity;
+        m_precipitation = precipitation;
+        m_temp = temp;
+        m_windspd = windspd;
+    }
+
     int Humidity() const override {
-        return 72;
+        return m_humidity;
     }
 
     int Precipitation() const override {
-        return 70;
+        return m_precipitation;
     }
 
     double TemperatureInC() const override {
-        return 26;
+        return m_temp;
     }
 
     int WindSpeedKMPH() const override {
-        return 52;
-    }
-};
-
-class SensorStub2 : public IWeatherSensor {
-    int Humidity() const override {
-        return 72;
-    }
-
-    int Precipitation() const override {
-        return 18;
-    }
-
-    double TemperatureInC() const override {
-        return 26;
-    }
-
-    int WindSpeedKMPH() const override {
-        return 52;
-    }
-};
-
-class SensorStub3 : public IWeatherSensor {
-    int Humidity() const override {
-        return 72;
-    }
-
-    int Precipitation() const override {
-        return 65;
-    }
-
-    double TemperatureInC() const override {
-        return 26;
-    }
-
-    int WindSpeedKMPH() const override {
-        return 45;
+        return m_windspd;
     }
 };
 
 TEST(TestWeather, TestSunny) {
 
-	SensorStub2 sensor;
+	SensorStub sensor(72,18,26,52);
 
   string report = Report(sensor);
   EXPECT_TRUE(report.find("Sunny day") != string::npos);
 }
 
 TEST(TestWeather, TestRainy) {
-    SensorStub sensor;
+    SensorStub sensor(72,70,40,52);
     string report = Report(sensor);
     EXPECT_TRUE(report.find("rain") != string::npos);
 }
 
 TEST(TestWeather, TestHighPrecipitationAndLowWindspeed) {
-    SensorStub3 sensor;
+    SensorStub sensor(72,65,26,45);
 
     // strengthen the assert to expose the bug
     // (function returns Sunny day, it should predict rain)
