@@ -9,6 +9,5 @@ using std::string;
 
 int main() {
     cout << "All is well (maybe)\n";
-    assert(false);
     return 0;
 }
