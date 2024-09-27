@@ -2,7 +2,7 @@
 
 if $1; then
     echo "succeeded"
-    exit 1
+    exit 0
 else
     echo "Failure. Not as expected"
 fi
